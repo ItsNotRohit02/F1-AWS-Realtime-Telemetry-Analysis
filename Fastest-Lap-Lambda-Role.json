@@ -1,0 +1,68 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": "logs:CreateLogGroup",
+            "Resource": "arn:aws:logs:us-east-1:*:*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "logs:CreateLogStream",
+                "logs:PutLogEvents"
+            ],
+            "Resource": [
+                "arn:aws:logs:us-east-1:*:log-group:/aws/lambda/Fastest-Lap:*"
+            ]
+        },
+        {
+            "Sid": "VisualEditor0",
+            "Effect": "Allow",
+            "Action": [
+                "kinesis:SubscribeToShard",
+                "kinesis:DescribeStreamConsumer",
+                "kinesis:GetResourcePolicy",
+                "sns:ListTopics",
+                "sns:Unsubscribe",
+                "sns:CreatePlatformEndpoint",
+                "sns:OptInPhoneNumber",
+                "sns:CheckIfPhoneNumberIsOptedOut",
+                "sns:ListEndpointsByPlatformApplication",
+                "sns:SetEndpointAttributes",
+                "kinesis:DescribeStreamSummary",
+                "sns:DeletePlatformApplication",
+                "sns:SetPlatformApplicationAttributes",
+                "sns:VerifySMSSandboxPhoneNumber",
+                "kinesis:DescribeLimits",
+                "sns:DeleteSMSSandboxPhoneNumber",
+                "sns:ListSMSSandboxPhoneNumbers",
+                "sns:CreatePlatformApplication",
+                "sns:SetSMSAttributes",
+                "kinesis:GetShardIterator",
+                "sns:GetPlatformApplicationAttributes",
+                "kinesis:DescribeStream",
+                "sns:GetSubscriptionAttributes",
+                "sns:ListSubscriptions",
+                "kinesis:ListTagsForStream",
+                "sns:ListOriginationNumbers",
+                "sns:DeleteEndpoint",
+                "sns:ListPhoneNumbersOptedOut",
+                "sns:GetEndpointAttributes",
+                "sns:SetSubscriptionAttributes",
+                "sns:GetSMSSandboxAccountStatus",
+                "sns:CreateSMSSandboxPhoneNumber",
+                "kinesis:GetRecords",
+                "sns:ListPlatformApplications",
+                "sns:GetSMSAttributes"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Sid": "VisualEditor1",
+            "Effect": "Allow",
+            "Action": "sns:*",
+            "Resource": "arn:aws:sns:us-east-1:*:F1-Fastest-Lap"
+        }
+    ]
+}

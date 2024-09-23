@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>F1 Driver Positions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #1e90ff;
+        }
+
+        table {
+            margin: 0 auto;
+            border-collapse: collapse;
+            width: 80%;
+            max-width: 800px;
+            background-color: #fff;
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #1e90ff;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+    <script>
+        // Fetch driver positions and update the table
+        function fetchDriverPositions() {
+            fetch('/positions')
+                .then(response => response.json())
+                .then(data => {
+                    const tableBody = document.querySelector('#driver-table-body');
+                    tableBody.innerHTML = '';  // Clear the current table content
+
+                    data.forEach(driver => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${driver.position}</td>
+                            <td>${driver.driver}</td>
+                            <td>${driver.team}</td>
+                            <td>${driver.lap_number}</td>
+                            <td>${driver.tyre}</td>
+                            <td>${driver.tyre_age}</td>
+                        `;
+                        tableBody.appendChild(row);
+                    });
+                })
+                .catch(error => console.error('Error fetching driver positions:', error));
+        }
+
+        // Set interval to refresh data every 5 seconds
+        setInterval(fetchDriverPositions, 5000);
+
+        // Fetch the driver positions when the page loads for the first time
+        window.onload = fetchDriverPositions;
+    </script>
+</head>
+<body>
+
+    <h1>F1 Driver Positions</h1>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Position</th>
+                <th>Driver</th>
+                <th>Team</th>
+                <th>Lap Number</th>
+                <th>Tyre Compound</th>
+                <th>Tyre Age</th>
+            </tr>
+        </thead>
+        <tbody id="driver-table-body">
+            <!-- JavaScript will dynamically populate the table here -->
+        </tbody>
+    </table>
+
+</body>
+</html>

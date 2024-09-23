@@ -44,13 +44,12 @@
         }
     </style>
     <script>
-        // Fetch driver positions and update the table
         function fetchDriverPositions() {
             fetch('/positions')
                 .then(response => response.json())
                 .then(data => {
                     const tableBody = document.querySelector('#driver-table-body');
-                    tableBody.innerHTML = '';  // Clear the current table content
+                    tableBody.innerHTML = '';
 
                     data.forEach(driver => {
                         const row = document.createElement('tr');
@@ -68,10 +67,8 @@
                 .catch(error => console.error('Error fetching driver positions:', error));
         }
 
-        // Set interval to refresh data every 5 seconds
         setInterval(fetchDriverPositions, 5000);
 
-        // Fetch the driver positions when the page loads for the first time
         window.onload = fetchDriverPositions;
     </script>
 </head>
@@ -91,7 +88,7 @@
             </tr>
         </thead>
         <tbody id="driver-table-body">
-            <!-- JavaScript will dynamically populate the table here -->
+            
         </tbody>
     </table>
 

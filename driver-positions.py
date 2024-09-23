@@ -32,10 +32,8 @@ def lambda_handler(event, context):
                 }
                 print(position_data)
                 
-                # Send the driver position data to the web server via HTTP POST
                 response = requests.post(WEB_SERVER_URL, json=position_data)
                 
-                # Log the response from the server
                 if response.status_code == 200:
                     print(f"Driver {driver}'s position sent successfully: {position}")
                 else:

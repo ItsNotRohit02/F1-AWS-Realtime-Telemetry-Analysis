@@ -9,11 +9,9 @@ def lambda_handler(event, context):
     global FASTEST_LAP
     for record in event['Records']:
 
-        # Decode the base64-encoded data
         payload = base64.b64decode(record['kinesis']['data'])
         data = json.loads(payload)
 
-        # Ensure that the required fields are present and valid
         if 'lap_time' not in data or data['lap_time'] is None:
             continue
         
